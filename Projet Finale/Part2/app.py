@@ -7,6 +7,7 @@ import pandas as pd
 import plotly.graph_objs as go
 import plotly.express as px
 import os
+
 # Load the data using pandas
 data = pd.read_csv('https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv')
 
@@ -38,16 +39,16 @@ app.layout = html.Div([
             value='Yearly Statistics',
             placeholder='Select a report type'
         )
-    ]),
+    ], style={'margin-bottom': '10px'}),
     html.Div(dcc.Dropdown(
             id='select-year',
             options=[{'label': i, 'value': i} for i in year_list],
             value=year_list[0]
-        )),
+        ), style={'margin-bottom': '20px'}),
     html.Div([  # TASK 2.3: Add a division for output display
         html.Div(id='output-container', className='output-container', style={'margin-top': '20px'}),
     ])
-])
+], style={'padding': '20px'})
 
 # TASK 2.4: Creating Callbacks
 # Define the callback function to update the input container based on the selected statistics
@@ -104,10 +105,10 @@ def update_output_container(selected_statistics, input_year):
             labels={'unemployment_rate': 'Unemployment Rate', 'Automobile_Sales': 'Average Automobile Sales'},
             title='Effect of Unemployment Rate on Vehicle Type and Sales'))
 
-        return [
-            html.Div(className='chart-item', children=[html.Div(children=R_chart1), html.Div(children=R_chart2)], style={'display': 'flex'}),
-            html.Div(className='chart-item', children=[html.Div(children=R_chart3), html.Div(children=R_chart4)], style={'display': 'flex'})
-        ]
+        return html.Div([
+            html.Div(className='chart-item', children=[R_chart1, R_chart2], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'space-around'}),
+            html.Div(className='chart-item', children=[R_chart3, R_chart4], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'space-around'})
+        ])
 
     # TASK 2.6: Create and display graphs for Yearly Report Statistics
     elif input_year and selected_statistics == 'Yearly Statistics':
@@ -145,10 +146,10 @@ def update_output_container(selected_statistics, input_year):
             values='Advertising_Expenditure', 
             title="Total Advertising Expenditure by Vehicle Type"))
 
-        return [
-            html.Div(className='chart-item', children=[html.Div(children=Y_chart1), html.Div(children=Y_chart2)], style={'display': 'flex'}),
-            html.Div(className='chart-item', children=[html.Div(children=Y_chart3), html.Div(children=Y_chart4)], style={'display': 'flex'})
-        ]
+        return html.Div([
+            html.Div(className='chart-item', children=[Y_chart1, Y_chart2], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'space-around'}),
+            html.Div(className='chart-item', children=[Y_chart3, Y_chart4], style={'display': 'flex', 'flex-wrap': 'wrap', 'justify-content': 'space-around'})
+        ])
 
     else:
         return None
@@ -156,6 +157,4 @@ def update_output_container(selected_statistics, input_year):
 # Run the Dash app
 if __name__ == '__main__':
     port = int(os.getenv("PORT", 10000))
-    app.run(debug=True,port=port, host='0.0.0.0')
-
-
+    app.run(debug=True, port=port, host='0.0.0.0')
