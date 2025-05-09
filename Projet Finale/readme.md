@@ -10,6 +10,7 @@ Le projet est structuré en plusieurs parties :
 - **Partie 2** : Conception d’un **dashboard interactif** avec **Plotly Dash** permettant d'explorer les statistiques de vente d'automobiles.
 
 ## 🚀 Accès au Dashboard
+Le lien du dashboard : https://visualisation-des-donn-es-avec-python-ibm-49d0.onrender.com/
 ![alt text](Recession%20Period.png)
 ![alt text](Yearly.png)
 
