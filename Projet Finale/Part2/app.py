@@ -156,6 +156,6 @@ def update_output_container(selected_statistics, input_year):
 # Run the Dash app
 if __name__ == '__main__':
     port = int(os.getenv("PORT", 10000))
-    app.run(debug=True,port=port, host='')
+    app.run(debug=True,port=port, host='0.0.0.0')
 
 
